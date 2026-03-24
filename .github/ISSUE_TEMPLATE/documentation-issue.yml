@@ -1,0 +1,40 @@
+name: Documentation Improvement
+description: Suggest improvements to documentation.
+title: "[docs]: "
+labels: ["documentation"]
+projects: ["aws/330"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: URL/Location
+      description: Link to the page or section with the issue
+      placeholder: "https://... or docs/path/to/file.md"
+    validations:
+      required: false
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Describe What's Incorrect or Lacking
+      description: What's wrong or missing in the current documentation?
+      placeholder: "The example for X doesn't work because..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: How can we improve the documentation here?
+      placeholder: "suggestion here...."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additionalContext
+    attributes:
+      label: Additional Context
+      description: Any other details, screenshots, or references that might help
+    validations:
+      required: false
