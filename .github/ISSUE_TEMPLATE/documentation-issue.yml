@@ -2,7 +2,7 @@ name: Documentation Improvement
 description: Suggest improvements to documentation.
 title: "[docs]: "
 labels: ["documentation"]
-projects: ["aws/330"]
+projects: ["aws/346"]
 body:
   - type: input
     id: url
