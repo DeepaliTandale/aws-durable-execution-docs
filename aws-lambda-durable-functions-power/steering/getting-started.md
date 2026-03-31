@@ -5,7 +5,8 @@ Quick start guide for building your first durable function.
 ## Check user and project preferences
 
 Ask which IaC framework to use for new projects.
-Ask which programming language to use if unclear, clarify between JavaScript and TypeScript if necessary.
+Ask which programming language to use. Supported languages are: **TypeScript**, **JavaScript**, **Python**, and **Java**. If the user says JavaScript or TypeScript, clarify between the two if necessary.
+**IMPORTANT**: Only install the SDK, create project files, and show examples for the language the user chose. Do NOT set up other languages.
 Ask to create a git repo for projects if one doesn't exist already.
 
 ## Basic Handler
@@ -368,7 +369,7 @@ my-durable-function/
 └── pom.xml
 ```
 
-## ESLint Plugin Setup
+## ESLint Plugin Setup (TypeScript/JavaScript only)
 
 Install the ESLint plugin to catch common durable function mistakes at development time:
 
@@ -422,7 +423,7 @@ export default [
 - Incorrect usage of durable context outside handler
 - Common replay model violations
 
-## Jest Configuration
+## Jest Configuration (TypeScript only)
 
 **jest.config.js:**
 

@@ -41,7 +41,8 @@ Before using AWS Lambda durable functions, verify:
 ## Step 2: Check user and project preferences
 
 Ask which IaC framework to use for new projects.
-Ask which programming language to use if unclear, clarify between JavaScript and TypeScript if necessary.
+Ask which programming language to use. Supported languages are: **TypeScript**, **JavaScript**, **Python**, and **Java**. If the user says JavaScript or TypeScript, clarify between the two if necessary.
+**IMPORTANT**: Only install the SDK and set up the project for the language the user chose. Do NOT install SDKs or create project files for other languages.
 Ask to create a git repo for projects if one doesn't exist already.
 
 ### Error Scenarios
@@ -59,6 +60,8 @@ Ask to create a git repo for projects if one doesn't exist already.
 - Suggest supported frameworks as alternatives
 
 ### Step 3: Install SDK
+
+Install **only** the SDK for the language the user selected in Step 2.
 
 **For TypeScript/JavaScript:**
 
