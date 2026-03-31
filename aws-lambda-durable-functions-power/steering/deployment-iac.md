@@ -221,7 +221,7 @@ sam deploy --guided
 
 ### Java SAM Deployment
 
-For Java, `CodeUri` must point to the project root where `pom.xml` lives — SAM runs the Maven build itself. Use `java21` runtime with the `handleRequest` handler format:
+Java durable functions require container images — managed runtimes (`java21`, `java17`) do not support `DurableConfig`. Use `PackageType: Image`:
 
 ```yaml
 AWSTemplateFormatVersion: '2010-09-09'
@@ -232,9 +232,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: myJavaDurableFunction
-      Runtime: java21
-      Handler: com.example.MyHandler::handleRequest
-      CodeUri: .   # Must point to directory containing pom.xml
+      PackageType: Image
       DurableConfig:
         ExecutionTimeout: 3600
         RetentionPeriodInDays: 7
@@ -245,6 +243,21 @@ Resources:
       Environment:
         Variables:
           LOG_LEVEL: INFO
+    Metadata:
+      DockerTag: v1
+      DockerContext: .          # Must point to directory containing pom.xml and Dockerfile
+      Dockerfile: Dockerfile
+```
+
+**Dockerfile:**
+
+```dockerfile
+FROM public.ecr.aws/lambda/java:21
+
+# Copy the built jar (use maven-shade-plugin or maven-assembly-plugin to create an uber-jar)
+COPY target/my-durable-function.jar ${LAMBDA_TASK_ROOT}/lib/
+
+CMD ["com.example.MyHandler::handleRequest"]
 ```
 
 **Build and deploy:**
@@ -254,7 +267,7 @@ sam build -t infrastructure/template.yaml
 sam deploy --guided
 ```
 
-**Important:** `CodeUri: .` tells SAM to look for `pom.xml` in the current directory. If your template is in an `infrastructure/` subfolder, use `CodeUri: ../` to point to the project root.
+**Important:** The `DockerContext` must point to the directory containing both `pom.xml` and `Dockerfile`. SAM builds the Docker image, which copies the pre-built jar. Run `mvn package` before `sam build` if your Dockerfile copies from `target/`.
 
 ## Durable Invokes
 
