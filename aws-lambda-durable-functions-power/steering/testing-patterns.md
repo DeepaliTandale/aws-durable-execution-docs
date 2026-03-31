@@ -23,7 +23,8 @@ Test durable functions locally and in the cloud with comprehensive test runners.
 - ✅ Java: Use `result.getOperation("name")` to find operations by name
 - ✅ Java: Use `LocalDurableTestRunner.create(InputType.class, handler)` to create runner
 - ✅ Java: Use `runner.runUntilComplete(input)` for auto-time-skipping tests
-- ✅ Java: Use `result.getResult(OutputType.class)` to get typed results
+- ✅ Java: Use `result.getResult(OutputType.class)` to get typed results — NOT `getOutput()`
+- ✅ Java: Import `ExecutionStatus` from `software.amazon.lambda.durable.model.ExecutionStatus` — NOT from `testing` package
 
 ### DON'T:
 
@@ -34,6 +35,8 @@ Test durable functions locally and in the cloud with comprehensive test runners.
 - ❌ TypeScript: Test callbacks without proper synchronization (leads to race conditions)
 - ❌ Python: Confuse `DurableFunctionTestRunner` (local) with `DurableFunctionCloudTestRunner` (cloud)
 - ❌ Python: Forget the `with runner:` context manager — it manages execution lifecycle
+- ❌ Java: Use `getOutput()` — the correct method is `getResult(OutputType.class)`
+- ❌ Java: Import `ExecutionStatus` from `software.amazon.lambda.durable.testing` — correct package is `software.amazon.lambda.durable.model`
 
 ## Local Testing Setup
 
@@ -100,6 +103,9 @@ def test_workflow():
 **Java:**
 
 ```java
+import software.amazon.lambda.durable.model.ExecutionStatus;
+import software.amazon.lambda.durable.testing.LocalDurableTestRunner;
+
 @Test
 void testWorkflow() {
     var handler = new MyHandler();
