@@ -1,3 +1,6 @@
+import software.amazon.lambda.durable.model.ExecutionStatus;
+import software.amazon.lambda.durable.testing.LocalDurableTestRunner;
+
 @Test
 void testValidationFailure() {
     var runner = LocalDurableTestRunner.create(Map.class, new ValidationHandler());
