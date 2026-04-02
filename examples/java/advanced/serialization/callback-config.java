@@ -5,5 +5,5 @@ var config = CallbackConfig.builder()
 
 var callback = ctx.createCallback("approval", String.class, config);
 
-// Send callback.getCallbackId() to external system
-return Map.of("callback_id", callback.getCallbackId());
+// Send callback.callbackId() to external system
+return Map.of("callback_id", callback.callbackId());

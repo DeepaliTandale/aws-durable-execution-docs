@@ -7,6 +7,6 @@ public class CallbackHandler extends DurableHandler<Map, String> {
             .build();
 
         var callback = ctx.createCallback("example_callback", String.class, callbackConfig);
-        return "Callback created with ID: " + callback.getCallbackId();
+        return "Callback created with ID: " + callback.callbackId();
     }
 }

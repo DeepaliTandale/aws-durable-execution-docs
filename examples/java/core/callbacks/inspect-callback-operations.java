@@ -10,5 +10,5 @@ void testCallbackOperation() {
     // Verify callback properties
     assertNotNull(callbackOp);
     assertEquals("example_callback", callbackOp.getName());
-    assertNotNull(callbackOp.getCallbackId());
+    assertNotNull(runner.getCallbackId("example_callback"));
 }

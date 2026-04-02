@@ -8,6 +8,6 @@ public class CallbackTimeoutHandler extends DurableHandler<Map, String> {
             .build();
 
         var callback = ctx.createCallback("approval_callback", String.class, config);
-        return "Callback created: " + callback.getCallbackId();
+        return "Callback created: " + callback.callbackId();
     }
 }

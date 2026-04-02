@@ -1,5 +1,5 @@
 import java.time.Duration;
-import software.amazon.lambda.durable.callback.CallbackConfig;
+import software.amazon.lambda.durable.config.CallbackConfig;
 
 // Various ways to specify duration
 Duration timeout60s = Duration.ofSeconds(60);

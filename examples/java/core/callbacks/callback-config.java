@@ -1,7 +1,7 @@
 import java.time.Duration;
 import software.amazon.lambda.durable.DurableContext;
 import software.amazon.lambda.durable.DurableHandler;
-import software.amazon.lambda.durable.callback.CallbackConfig;
+import software.amazon.lambda.durable.config.CallbackConfig;
 
 public class CallbackConfigHandler extends DurableHandler<Map<String, Object>, String> {
 

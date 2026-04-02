@@ -3,4 +3,4 @@ var callback = ctx.createCallback("approval", Map.class,
     CallbackConfig.builder()
         .timeout(Duration.ofMinutes(3))
         .build());
-return Map.of("callback_id", callback.getCallbackId());
+return Map.of("callback_id", callback.callbackId());
